@@ -3,324 +3,493 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shiv Bhaskar - Software Engineer</title>
+    <title>Shiv Bhaskar - Software Engineer & Research Scholar</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .skill-tag { transition: all 0.3s ease; }
-        .skill-tag:hover { transform: scale(1.05); }
-        .section-title { position: relative; }
-        .section-title::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 50px; height: 3px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 2px; }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .tech-pattern {
+            background-image: 
+                linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+        
+        .circuit-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23667eea' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3Cpath d='M30 0v30M0 30h30M30 30l15-15M30 30l15 15M30 30l-15-15M30 30l-15 15' stroke='%23667eea' stroke-opacity='0.1' stroke-width='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            to { box-shadow: 0 0 30px rgba(102, 126, 234, 0.8); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .skill-tag {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .skill-tag:hover {
+            transform: scale(1.1) rotate(2deg);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .section-title {
+            position: relative;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            border-radius: 2px;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float-shapes 20s infinite linear;
+        }
+        
+        .shape:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { top: 60%; left: 80%; animation-delay: 5s; }
+        .shape:nth-child(3) { top: 80%; left: 20%; animation-delay: 10s; }
+        .shape:nth-child(4) { top: 40%; left: 70%; animation-delay: 15s; }
+        
+        @keyframes float-shapes {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+        
+        .code-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='20' font-family='monospace' font-size='8' fill='%23667eea' opacity='0.1'%3E&lt;/&gt;%3C/text%3E%3Ctext x='60' y='40' font-family='monospace' font-size='8' fill='%23764ba2' opacity='0.1'%3E{ }%3C/text%3E%3Ctext x='20' y='60' font-family='monospace' font-size='8' fill='%23f093fb' opacity='0.1'%3Eif()%3C/text%3E%3Ctext x='70' y='80' font-family='monospace' font-size='8' fill='%23667eea' opacity='0.1'%3E01101%3C/text%3E%3C/svg%3E");
+        }
+        
+        .profile-image {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            animation: rotate-gradient 4s ease-in-out infinite;
+        }
+        
+        @keyframes rotate-gradient {
+            0%, 100% { background: linear-gradient(135deg, #667eea, #764ba2); }
+            50% { background: linear-gradient(135deg, #764ba2, #f093fb); }
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-900 text-gray-100">
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes fixed inset-0 z-0">
+        <div class="shape w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"></div>
+        <div class="shape w-16 h-16 bg-gradient-to-r from-pink-400 to-red-500 rounded-lg"></div>
+        <div class="shape w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full"></div>
+        <div class="shape w-24 h-24 bg-gradient-to-r from-purple-400 to-pink-500 rounded-lg"></div>
+    </div>
+
     <!-- Header Section -->
-    <header class="gradient-bg text-white py-16">
-        <div class="container mx-auto px-6 text-center">
-            <div class="mb-6">
-                <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center text-6xl text-indigo-600 mb-6 shadow-lg">
-                    <i class="fas fa-user-tie"></i>
+    <header class="hero-bg tech-pattern relative min-h-screen flex items-center justify-center">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="mb-8">
+                <div class="profile-image w-40 h-40 mx-auto rounded-full flex items-center justify-center text-7xl text-white mb-8 neon-glow">
+                    <i class="fas fa-user-astronaut"></i>
                 </div>
-                <h1 class="text-5xl font-bold mb-2">Shiv Bhaskar</h1>
-                <p class="text-xl text-indigo-100 mb-6">Software Engineer</p>
-                <div class="flex flex-wrap justify-center gap-6 text-lg">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-map-marker-alt text-indigo-200"></i>
+                <h1 class="text-6xl md:text-7xl font-bold mb-4 text-white drop-shadow-lg">Shiv Bhaskar</h1>
+                <div class="text-2xl md:text-3xl text-blue-100 mb-8 font-light">
+                    <span class="inline-block">💻 Software Engineer</span>
+                    <span class="mx-4">•</span>
+                    <span class="inline-block">🎓 Research Scholar</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto text-lg">
+                    <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+                        <i class="fas fa-map-marker-alt text-pink-400 text-xl"></i>
                         <span>Jaipur, India</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-phone text-indigo-200"></i>
-                        <span>9********9</span>
+                    <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+                        <i class="fas fa-phone text-green-400 text-xl"></i>
+                        <span>9783743029</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-envelope text-indigo-200"></i>
-                        <span>bhask*******@gmail.com</span>
+                    <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+                        <i class="fas fa-envelope text-blue-400 text-xl"></i>
+                        <span class="text-sm">bhaskarshiv718@gmail.com</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fab fa-linkedin text-indigo-200"></i>
-                        <span>linkedin.com/in/shiv-bhaskar-99005b184</span>
+                    <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+                        <i class="fab fa-linkedin text-blue-500 text-xl"></i>
+                        <span class="text-sm">LinkedIn Profile</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="container mx-auto px-6 py-12">
-        <!-- Education Section -->
-        <section class="mb-16">
-            <h2 class="section-title text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
-                <i class="fas fa-graduation-cap text-indigo-600"></i>
-                Education
-            </h2>
-            <div class="grid gap-6">
-                <div class="card-hover bg-white rounded-xl p-6 shadow-lg border-l-4 border-indigo-500">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-indigo-100 p-3 rounded-lg">
-                            <i class="fas fa-university text-indigo-600 text-xl"></i>
+    <div class="relative z-10 circuit-bg">
+        <div class="container mx-auto px-6 py-16">
+            <!-- Education Section -->
+            <section class="mb-20">
+                <h2 class="section-title text-4xl font-bold mb-12 flex items-center gap-4">
+                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-4 rounded-xl">
+                        <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    </div>
+                    Education
+                </h2>
+                <div class="grid gap-8">
+                    <div class="card-hover glass-card rounded-2xl p-8 border-l-4 border-gradient-to-b from-blue-500 to-purple-600">
+                        <div class="flex items-start gap-6">
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-4 rounded-xl neon-glow">
+                                <i class="fas fa-university text-white text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">M. Tech Research, Information Theory</h3>
+                                <p class="text-blue-600 font-semibold text-lg mb-2">🏛️ Indian Institute of Technology (IIT), Mandi</p>
+                                <p class="text-gray-600">📅 Dropped after 1st year</p>
+                            </div>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">M. Tech Research, Information Theory</h3>
-                            <p class="text-indigo-600 font-medium mb-2">Indian Institute of Technology (IIT), Mandi</p>
-                            <p class="text-gray-600">Dropped after 1st year</p>
+                    </div>
+                    
+                    <div class="card-hover glass-card rounded-2xl p-8 border-l-4 border-gradient-to-b from-green-500 to-teal-600">
+                        <div class="flex items-start gap-6">
+                            <div class="bg-gradient-to-r from-green-500 to-teal-600 p-4 rounded-xl">
+                                <i class="fas fa-microchip text-white text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">B. Tech, Electronics and Communication Engineering</h3>
+                                <p class="text-green-600 font-semibold text-lg mb-2">🎓 Lovely Professional University, Jalandhar</p>
+                                <p class="text-gray-600">📅 2018 - 2022</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-hover glass-card rounded-2xl p-8 border-l-4 border-gradient-to-b from-purple-500 to-pink-600">
+                        <div class="flex items-start gap-6">
+                            <div class="bg-gradient-to-r from-purple-500 to-pink-600 p-4 rounded-xl">
+                                <i class="fas fa-award text-white text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">GATE Qualified</h3>
+                                <p class="text-purple-600 font-semibold text-lg mb-2">🏆 Computer Science & IT</p>
+                                <p class="text-gray-600">📅 2024</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="card-hover bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-green-100 p-3 rounded-lg">
-                            <i class="fas fa-microchip text-green-600 text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">B. Tech, Electronics and Communication Engineering</h3>
-                            <p class="text-green-600 font-medium mb-2">Lovely Professional University, Jalandhar</p>
-                            <p class="text-gray-600">2018 - 2022</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card-hover bg-white rounded-xl p-6 shadow-lg border-l-4 border-purple-500">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-purple-100 p-3 rounded-lg">
-                            <i class="fas fa-award text-purple-600 text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">GATE Qualified</h3>
-                            <p class="text-purple-600 font-medium mb-2">Computer Science & IT</p>
-                            <p class="text-gray-600">2024</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Research Experience Section -->
-        <section class="mb-16">
-            <h2 class="section-title text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
-                <i class="fas fa-flask text-indigo-600"></i>
-                Research Experience
-            </h2>
-            <div class="card-hover bg-white rounded-xl p-8 shadow-lg">
-                <div class="flex items-start gap-4 mb-6">
-                    <div class="bg-blue-100 p-4 rounded-lg">
-                        <i class="fas fa-atom text-blue-600 text-2xl"></i>
+            <!-- Research Experience Section -->
+            <section class="mb-20">
+                <h2 class="section-title text-4xl font-bold mb-12 flex items-center gap-4">
+                    <div class="bg-gradient-to-r from-red-500 to-orange-600 p-4 rounded-xl">
+                        <i class="fas fa-flask text-white text-2xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Information Theory & Entropy Vectors</h3>
-                        <p class="text-blue-600 font-medium text-lg">IIT Mandi</p>
-                    </div>
-                </div>
-                <ul class="space-y-4 text-gray-700">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <span>Investigated methods to construct probability distributions for given entropy vectors, addressing a key open problem in Information Theory.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <span>Focused on Quasi-Uniform Entropy Vectors (QUEVs) to explore the boundaries of the Shannon entropy region.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <span>Researched both traditional algorithmic approaches and modern machine learning-based methods for distribution construction.</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section class="mb-16">
-            <h2 class="section-title text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
-                <i class="fas fa-project-diagram text-indigo-600"></i>
-                Projects
-            </h2>
-            <div class="card-hover bg-white rounded-xl p-8 shadow-lg">
-                <div class="flex items-start gap-4 mb-6">
-                    <div class="bg-orange-100 p-4 rounded-lg">
-                        <i class="fas fa-volume-up text-orange-600 text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Bilingual Text-to-Speech (TTS) Model</h3>
-                        <div class="flex gap-2 mb-4">
-                            <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">AI/ML</span>
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Audio Processing</span>
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Deep Learning</span>
+                    Research Experience
+                </h2>
+                <div class="card-hover glass-card rounded-2xl p-10 code-bg">
+                    <div class="flex items-start gap-6 mb-8">
+                        <div class="bg-gradient-to-r from-blue-600 to-purple-700 p-6 rounded-xl neon-glow">
+                            <i class="fas fa-atom text-white text-3xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-bold text-gray-800 mb-3">Information Theory & Entropy Vectors</h3>
+                            <p class="text-blue-600 font-semibold text-xl">🏛️ IIT Mandi</p>
                         </div>
                     </div>
-                </div>
-                <ul class="space-y-4 text-gray-700">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-cog text-blue-500 mt-1"></i>
-                        <span>Designed and developed a complete bilingual (Hindi/English) Text-to-Speech model, gaining hands-on experience in generative audio AI, model architecture, and training pipelines.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-database text-blue-500 mt-1"></i>
-                        <span>Spearheaded the creation of a comprehensive Hindi audio dataset from scratch. This involved collecting, cleaning, segmenting, and aligning audio clips with corresponding text to ensure high-quality data for model training.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-waveform-lines text-blue-500 mt-1"></i>
-                        <span>Applied various audio preprocessing techniques, including noise reduction, normalization, and feature extraction (e.g., Mel-spectrograms), to enhance audio quality for model training.</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section class="mb-16">
-            <h2 class="section-title text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
-                <i class="fas fa-briefcase text-indigo-600"></i>
-                Experience
-            </h2>
-            <div class="space-y-6">
-                <div class="card-hover bg-white rounded-xl p-8 shadow-lg">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="bg-indigo-100 p-4 rounded-lg">
-                            <i class="fas fa-code text-indigo-600 text-2xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Software Engineer</h3>
-                            <p class="text-indigo-600 font-medium text-lg mb-2">MSys Technologies Pvt. Ltd | Pune, Maharashtra</p>
-                            <p class="text-gray-600 font-medium mb-4">Aug 2022 - May 2023</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-search text-green-500 mt-1"></i>
-                            <span>Gained experience in reviewing code, running troubleshooting test-cases, and resolving bug issues.</span>
+                    <ul class="space-y-6 text-gray-700">
+                        <li class="flex items-start gap-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+                            <i class="fas fa-rocket text-blue-500 text-xl mt-1"></i>
+                            <span class="text-lg">Investigated methods to construct probability distributions for given entropy vectors, addressing a key open problem in Information Theory.</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-tools text-green-500 mt-1"></i>
-                            <span>Contributed to a shadow project by developing, testing, and debugging a software tool for internal and client use, improving process efficiency and user experience.</span>
+                        <li class="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
+                            <i class="fas fa-chart-line text-purple-500 text-xl mt-1"></i>
+                            <span class="text-lg">Focused on Quasi-Uniform Entropy Vectors (QUEVs) to explore the boundaries of the Shannon entropy region.</span>
+                        </li>
+                        <li class="flex items-start gap-4 p-4 bg-gradient-to-r from-pink-50 to-red-50 rounded-xl">
+                            <i class="fas fa-brain text-pink-500 text-xl mt-1"></i>
+                            <span class="text-lg">Researched both traditional algorithmic approaches and modern machine learning-based methods for distribution construction.</span>
                         </li>
                     </ul>
                 </div>
+            </section>
 
-                <div class="card-hover bg-white rounded-xl p-8 shadow-lg">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="bg-green-100 p-4 rounded-lg">
-                            <i class="fas fa-user-graduate text-green-600 text-2xl"></i>
+            <!-- Projects Section -->
+            <section class="mb-20">
+                <h2 class="section-title text-4xl font-bold mb-12 flex items-center gap-4">
+                    <div class="bg-gradient-to-r from-green-500 to-blue-600 p-4 rounded-xl">
+                        <i class="fas fa-project-diagram text-white text-2xl"></i>
+                    </div>
+                    Projects
+                </h2>
+                <div class="card-hover glass-card rounded-2xl p-10">
+                    <div class="flex items-start gap-6 mb-8">
+                        <div class="bg-gradient-to-r from-orange-500 to-red-600 p-6 rounded-xl neon-glow">
+                            <i class="fas fa-volume-up text-white text-3xl"></i>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Intern</h3>
-                            <p class="text-green-600 font-medium text-lg mb-2">Honeyuncle Edu Solutions Pvt. Ltd. | Jaipur, Rajasthan</p>
-                            <p class="text-gray-600 font-medium mb-4">May 2022 - Jul 2022</p>
+                        <div>
+                            <h3 class="text-3xl font-bold text-gray-800 mb-4">Bilingual Text-to-Speech (TTS) Model</h3>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-blue-600 to-blue-700 text-white">🤖 AI/ML</span>
+                                <span class="px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-600 to-purple-700 text-white">🎵 Audio Processing</span>
+                                <span class="px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-green-600 to-green-700 text-white">🧠 Deep Learning</span>
+                                <span class="px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-orange-600 to-orange-700 text-white">🗣️ TTS</span>
+                            </div>
                         </div>
                     </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-paint-brush text-blue-500 mt-1"></i>
-                            <span>Translated designs and wireframes into high-quality code using HTML, CSS, and Bootstrap.</span>
+                    <ul class="space-y-6 text-gray-700">
+                        <li class="flex items-start gap-4 p-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl">
+                            <i class="fas fa-cogs text-orange-500 text-xl mt-1"></i>
+                            <span class="text-lg">Designed and developed a complete bilingual (Hindi/English) Text-to-Speech model, gaining hands-on experience in generative audio AI, model architecture, and training pipelines.</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-mobile-alt text-blue-500 mt-1"></i>
-                            <span>Implemented enhancements that improved web functionality and responsiveness.</span>
+                        <li class="flex items-start gap-4 p-4 bg-gradient-to-r from-red-50 to-pink-50 rounded-xl">
+                            <i class="fas fa-database text-red-500 text-xl mt-1"></i>
+                            <span class="text-lg">Spearheaded the creation of a comprehensive Hindi audio dataset from scratch. This involved collecting, cleaning, segmenting, and aligning audio clips with corresponding text.</span>
+                        </li>
+                        <li class="flex items-start gap-4 p-4 bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl">
+                            <i class="fas fa-wave-square text-pink-500 text-xl mt-1"></i>
+                            <span class="text-lg">Applied various audio preprocessing techniques, including noise reduction, normalization, and feature extraction (e.g., Mel-spectrograms).</span>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Technical Skills Section -->
-        <section class="mb-16">
-            <h2 class="section-title text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
-                <i class="fas fa-laptop-code text-indigo-600"></i>
-                Technical Skills
-            </h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card-hover bg-white rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-yellow-100 p-3 rounded-lg">
-                            <i class="fas fa-code text-yellow-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800">Languages</h3>
+            <!-- Experience Section -->
+            <section class="mb-20">
+                <h2 class="section-title text-4xl font-bold mb-12 flex items-center gap-4">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-600 p-4 rounded-xl">
+                        <i class="fas fa-briefcase text-white text-2xl"></i>
                     </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag bg-yellow-100 text-yellow-800 px-3 py-2 rounded-lg text-sm font-medium">Python</span>
-                        <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-2 rounded-lg text-sm font-medium">C++</span>
-                        <span class="skill-tag bg-green-100 text-green-800 px-3 py-2 rounded-lg text-sm font-medium">JavaScript</span>
-                        <span class="skill-tag bg-orange-100 text-orange-800 px-3 py-2 rounded-lg text-sm font-medium">HTML</span>
-                        <span class="skill-tag bg-purple-100 text-purple-800 px-3 py-2 rounded-lg text-sm font-medium">CSS</span>
+                    Experience
+                </h2>
+                <div class="space-y-8">
+                    <div class="card-hover glass-card rounded-2xl p-10">
+                        <div class="flex items-start gap-6 mb-8">
+                            <div class="bg-gradient-to-r from-indigo-600 to-purple-700 p-6 rounded-xl neon-glow">
+                                <i class="fas fa-code text-white text-3xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold text-gray-800 mb-3">Software Engineer</h3>
+                                <p class="text-indigo-600 font-semibold text-xl mb-2">🏢 MSys Technologies Pvt. Ltd | Pune, Maharashtra</p>
+                                <p class="text-gray-600 font-medium text-lg mb-4">📅 Aug 2022 - May 2023</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 text-gray-700">
+                            <li class="flex items-start gap-4 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
+                                <i class="fas fa-search text-indigo-500 text-xl mt-1"></i>
+                                <span class="text-lg">Gained experience in reviewing code, running troubleshooting test-cases, and resolving bug issues.</span>
+                            </li>
+                            <li class="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
+                                <i class="fas fa-tools text-purple-500 text-xl mt-1"></i>
+                                <span class="text-lg">Contributed to a shadow project by developing, testing, and debugging a software tool for internal and client use.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card-hover glass-card rounded-2xl p-10">
+                        <div class="flex items-start gap-6 mb-8">
+                            <div class="bg-gradient-to-r from-green-600 to-teal-700 p-6 rounded-xl">
+                                <i class="fas fa-user-graduate text-white text-3xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold text-gray-800 mb-3">Intern</h3>
+                                <p class="text-green-600 font-semibold text-xl mb-2">🏢 Honeyuncle Edu Solutions Pvt. Ltd. | Jaipur, Rajasthan</p>
+                                <p class="text-gray-600 font-medium text-lg mb-4">📅 May 2022 - Jul 2022</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 text-gray-700">
+                            <li class="flex items-start gap-4 p-4 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl">
+                                <i class="fas fa-paint-brush text-green-500 text-xl mt-1"></i>
+                                <span class="text-lg">Translated designs and wireframes into high-quality code using HTML, CSS, and Bootstrap.</span>
+                            </li>
+                            <li class="flex items-start gap-4 p-4 bg-gradient-to-r from-teal-50 to-blue-50 rounded-xl">
+                                <i class="fas fa-mobile-alt text-teal-500 text-xl mt-1"></i>
+                                <span class="text-lg">Implemented enhancements that improved web functionality and responsiveness.</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+            </section>
 
-                <div class="card-hover bg-white rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-red-100 p-3 rounded-lg">
-                            <i class="fas fa-brain text-red-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800">AI & ML</h3>
+            <!-- Technical Skills Section -->
+            <section class="mb-20">
+                <h2 class="section-title text-4xl font-bold mb-12 flex items-center gap-4">
+                    <div class="bg-gradient-to-r from-cyan-500 to-blue-600 p-4 rounded-xl">
+                        <i class="fas fa-laptop-code text-white text-2xl"></i>
                     </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag bg-red-100 text-red-800 px-3 py-2 rounded-lg text-sm font-medium">AI Model Development</span>
-                        <span class="skill-tag bg-pink-100 text-pink-800 px-3 py-2 rounded-lg text-sm font-medium">Generative AI</span>
-                        <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-2 rounded-lg text-sm font-medium">PyTorch</span>
-                        <span class="skill-tag bg-teal-100 text-teal-800 px-3 py-2 rounded-lg text-sm font-medium">Audio Analysis</span>
+                    Technical Skills
+                </h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-hover glass-card rounded-2xl p-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-gradient-to-r from-yellow-500 to-orange-600 p-4 rounded-xl neon-glow">
+                                <i class="fas fa-code text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800">Languages</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-blue-700 text-white border-blue-500">🐍 Python</span>
+                            <span class="skill-tag px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-600 to-purple-700 text-white border-purple-500">⚡ C++</span>
+                            <span class="skill-tag px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 border-yellow-400">🟨 JavaScript</span>
+                            <span class="skill-tag px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-orange-500 to-orange-600 text-white border-orange-400">🌐 HTML</span>
+                            <span class="skill-tag px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-cyan-500 to-cyan-600 text-white border-cyan-400">🎨 CSS</span>
+                        </div>
+                    </div>
+
+                    <div class="card-hover glass-card rounded-2xl p-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-gradient-to-r from-red-500 to-pink-600 p-4 rounded-xl neon-glow">
+                                <i class="fas fa-brain text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800">AI & ML</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-red-600 to-red-700 text-white">🤖 AI Development</span>
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-pink-600 to-pink-700 text-white">✨ Generative AI</span>
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-orange-600 to-orange-700 text-white">🔥 PyTorch</span>
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-600 to-purple-700 text-white">🎵 Audio Analysis</span>
+                        </div>
+                    </div>
+
+                    <div class="card-hover glass-card rounded-2xl p-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-gradient-to-r from-green-500 to-teal-600 p-4 rounded-xl neon-glow">
+                                <i class="fas fa-database text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800">Database</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-green-600 to-green-700 text-white">🗄️ MySQL</span>
+                        </div>
+                    </div>
+
+                    <div class="card-hover glass-card rounded-2xl p-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 rounded-xl neon-glow">
+                                <i class="fas fa-tools text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800">Frameworks</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-blue-700 text-white">🟢 Node.js</span>
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-indigo-600 to-indigo-700 text-white">⚡ Ajax</span>
+                        </div>
+                    </div>
+
+                    <div class="card-hover glass-card rounded-2xl p-8 md:col-span-2 lg:col-span-2">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-gradient-to-r from-purple-500 to-pink-600 p-4 rounded-xl neon-glow">
+                                <i class="fas fa-users text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800">Soft Skills</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-600 to-purple-700 text-white">🧩 Problem-Solving</span>
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-pink-600 to-pink-700 text-white">🤝 Collaboration</span>
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-teal-600 to-teal-700 text-white">💬 Communication</span>
+                            <span class="px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-cyan-600 to-cyan-700 text-white">📚 Self-learning</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card-hover bg-white rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-green-100 p-3 rounded-lg">
-                            <i class="fas fa-database text-green-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800">Databases</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag bg-green-100 text-green-800 px-3 py-2 rounded-lg text-sm font-medium">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="card-hover bg-white rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-blue-100 p-3 rounded-lg">
-                            <i class="fas fa-tools text-blue-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800">Frameworks & Tools</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-2 rounded-lg text-sm font-medium">Node.js</span>
-                        <span class="skill-tag bg-cyan-100 text-cyan-800 px-3 py-2 rounded-lg text-sm font-medium">Ajax</span>
-                    </div>
-                </div>
-
-                <div class="card-hover bg-white rounded-xl p-6 shadow-lg md:col-span-2 lg:col-span-1">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-purple-100 p-3 rounded-lg">
-                            <i class="fas fa-users text-purple-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800">Soft Skills</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag bg-purple-100 text-purple-800 px-3 py-2 rounded-lg text-sm font-medium">Problem-Solving</span>
-                        <span class="skill-tag bg-pink-100 text-pink-800 px-3 py-2 rounded-lg text-sm font-medium">Collaboration</span>
-                        <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-2 rounded-lg text-sm font-medium">Communication</span>
-                        <span class="skill-tag bg-teal-100 text-teal-800 px-3 py-2 rounded-lg text-sm font-medium">Self-learning</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer class="gradient-bg text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-lg mb-4">Let's connect and build something amazing together!</p>
-            <div class="flex justify-center gap-6">
-                <a href="mailto:bhaskarshiv718@gmail.com" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full transition-all duration-300">
-                    <i class="fas fa-envelope text-xl"></i>
+    <footer class="hero-bg tech-pattern relative py-16">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h3 class="text-3xl font-bold text-white mb-6">Let's Build Something Amazing Together! 🚀</h3>
+            <p class="text-xl text-blue-100 mb-8">Ready to collaborate on your next big project?</p>
+            <div class="flex justify-center gap-8">
+                <a href="mailto:bhaskarshiv718@gmail.com" class="glass-card hover:neon-glow p-6 rounded-2xl transition-all duration-300 transform hover:scale-110">
+                    <i class="fas fa-envelope text-3xl text-blue-400 mb-2"></i>
+                    <p class="text-white font-semibold">Email Me</p>
                 </a>
-                <a href="https://linkedin.com/in/shiv-bhaskar-99005b184" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full transition-all duration-300">
-                    <i class="fab fa-linkedin text-xl"></i>
+                <a href="https://linkedin.com/in/shiv-bhaskar-99005b184" class="glass-card hover:neon-glow p-6 rounded-2xl transition-all duration-300 transform hover:scale-110">
+                    <i class="fab fa-linkedin text-3xl text-blue-500 mb-2"></i>
+                    <p class="text-white font-semibold">LinkedIn</p>
                 </a>
-                <a href="tel:9783743029" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full transition-all duration-300">
-                    <i class="fas fa-phone text-xl"></i>
+                <a href="tel:9783743029" class="glass-card hover:neon-glow p-6 rounded-2xl transition-all duration-300 transform hover:scale-110">
+                    <i class="fas fa-phone text-3xl text-green-400 mb-2"></i>
+                    <p class="text-white font-semibold">Call Me</p>
                 </a>
             </div>
         </div>
     </footer>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a40fd7e6ac1bb0',t:'MTc1NDM3MzQ5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a4268f07536ce7',t:'MTc1NDM3NDQyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
