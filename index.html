@@ -11,7 +11,12 @@
         body { font-family: 'Inter', sans-serif; }
         
         .hero-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: 
+                linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='skyGrad' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23000814;stop-opacity:1' /%3E%3Cstop offset='30%25' style='stop-color:%23001d3d;stop-opacity:1' /%3E%3Cstop offset='70%25' style='stop-color:%23003566;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ffd60a;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23skyGrad)'/%3E%3C!-- Launch Pad --%3E%3Crect x='500' y='700' width='200' height='100' fill='%23333' rx='10'/%3E%3Crect x='520' y='680' width='160' height='20' fill='%23666'/%3E%3Crect x='580' y='600' width='40' height='100' fill='%23888'/%3E%3C!-- Rocket --%3E%3Cpolygon points='600,200 580,600 620,600' fill='%23e0e0e0'/%3E%3Cpolygon points='600,200 590,220 610,220' fill='%23ff4444'/%3E%3Crect x='590' y='500' width='20' height='30' fill='%23333'/%3E%3Crect x='590' y='450' width='20' height='30' fill='%23333'/%3E%3C!-- Exhaust Flames --%3E%3Cpolygon points='600,600 585,650 600,680 615,650' fill='%23ff6b35' opacity='0.9'/%3E%3Cpolygon points='600,680 590,720 600,750 610,720' fill='%23ffaa44' opacity='0.8'/%3E%3Cpolygon points='600,750 595,780 600,800 605,780' fill='%23ffffff' opacity='0.7'/%3E%3C!-- Stars --%3E%3Ccircle cx='100' cy='100' r='2' fill='white' opacity='0.8'/%3E%3Ccircle cx='200' cy='150' r='1' fill='white' opacity='0.6'/%3E%3Ccircle cx='300' cy='80' r='1.5' fill='white' opacity='0.9'/%3E%3Ccircle cx='800' cy='120' r='1' fill='white' opacity='0.7'/%3E%3Ccircle cx='900' cy='200' r='2' fill='white' opacity='0.8'/%3E%3Ccircle cx='1000' cy='90' r='1' fill='white' opacity='0.6'/%3E%3Ccircle cx='150' cy='300' r='1' fill='white' opacity='0.5'/%3E%3Ccircle cx='950' cy='350' r='1.5' fill='white' opacity='0.8'/%3E%3C!-- Distant Mountains --%3E%3Cpolygon points='0,600 200,500 400,550 600,480 800,520 1000,460 1200,500 1200,800 0,800' fill='%23001122' opacity='0.6'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             position: relative;
             overflow: hidden;
         }
@@ -24,10 +29,171 @@
             right: 0;
             bottom: 0;
             background-image: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
-            animation: float 6s ease-in-out infinite;
+                radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, #ffffff, transparent),
+                radial-gradient(1px 1px at 200px 90px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 240px 50px, #ffffff, transparent),
+                radial-gradient(1px 1px at 280px 20px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 320px 100px, #ffffff, transparent),
+                radial-gradient(2px 2px at 360px 60px, rgba(255,255,255,0.9), transparent);
+            background-repeat: repeat;
+            background-size: 400px 200px;
+            animation: stars-move 20s linear infinite;
+        }
+        
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(ellipse at 20% 80%, rgba(255, 107, 35, 0.3) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 90%, rgba(255, 170, 68, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.1) 0%, transparent 30%);
+            animation: exhaust-glow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes stars-move {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-200px); }
+        }
+        
+        @keyframes exhaust-glow {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+        
+        .launch-pad {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 150px;
+            background: linear-gradient(180deg, #444 0%, #222 100%);
+            border-radius: 20px 20px 0 0;
+            z-index: 5;
+        }
+        
+        .launch-pad::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 20px;
+            background: #666;
+            border-radius: 10px;
+        }
+        
+        .launch-tower {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-30px);
+            width: 60px;
+            height: 200px;
+            background: linear-gradient(180deg, #888 0%, #555 100%);
+            border-radius: 5px;
+            z-index: 4;
+        }
+        
+        .rocket-main {
+            position: absolute;
+            bottom: 350px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 300px;
+            background: linear-gradient(180deg, #ff4444 0%, #e0e0e0 20%, #e0e0e0 100%);
+            border-radius: 40px 40px 10px 10px;
+            z-index: 6;
+            animation: rocket-shake 0.5s ease-in-out infinite alternate;
+        }
+        
+        .rocket-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 60px solid #ff4444;
+        }
+        
+        .rocket-main::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 50px;
+            background: linear-gradient(180deg, #ff6b35 0%, #ffaa44 50%, #ffffff 100%);
+            border-radius: 0 0 30px 30px;
+            animation: flame-flicker 0.1s ease-in-out infinite alternate;
+        }
+        
+        .rocket-windows {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: #4a90e2;
+            border-radius: 50%;
+            border: 3px solid #333;
+        }
+        
+        .rocket-fins {
+            position: absolute;
+            bottom: 20px;
+            left: -15px;
+            width: 0;
+            height: 0;
+            border-top: 40px solid #ccc;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+        }
+        
+        .rocket-fins:after {
+            content: '';
+            position: absolute;
+            right: -95px;
+            top: -40px;
+            width: 0;
+            height: 0;
+            border-top: 40px solid #ccc;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+        }
+        
+        @keyframes rocket-shake {
+            0% { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+            100% { transform: translateX(-50%) translateY(-2px) rotate(0.5deg); }
+        }
+        
+        @keyframes flame-flicker {
+            0% { 
+                height: 50px; 
+                background: linear-gradient(180deg, #ff6b35 0%, #ffaa44 50%, #ffffff 100%);
+                transform: translateX(-50%) scaleX(1);
+            }
+            100% { 
+                height: 70px; 
+                background: linear-gradient(180deg, #ff4444 0%, #ff6b35 30%, #ffaa44 70%, #ffffff 100%);
+                transform: translateX(-50%) scaleX(1.2);
+            }
         }
         
         .tech-pattern {
@@ -159,13 +325,89 @@
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
-    <!-- Floating Background Shapes -->
+    <!-- Realistic Launch Pad and Rocket -->
     <div class="floating-shapes fixed inset-0 z-0">
-        <div class="shape w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"></div>
-        <div class="shape w-16 h-16 bg-gradient-to-r from-pink-400 to-red-500 rounded-lg"></div>
-        <div class="shape w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full"></div>
-        <div class="shape w-24 h-24 bg-gradient-to-r from-purple-400 to-pink-500 rounded-lg"></div>
+        <!-- Launch Pad -->
+        <div class="launch-pad">
+            <div class="launch-tower"></div>
+        </div>
+        
+        <!-- Main Rocket -->
+        <div class="rocket-main">
+            <div class="rocket-windows"></div>
+            <div class="rocket-fins"></div>
+        </div>
+        
+        <!-- Smoke Particles -->
+        <div class="smoke-particles">
+            <div class="smoke-particle"></div>
+            <div class="smoke-particle"></div>
+            <div class="smoke-particle"></div>
+            <div class="smoke-particle"></div>
+        </div>
+        
+        <!-- Space Objects -->
+        <div class="absolute top-16 right-16 text-4xl animate-pulse" style="animation: float-planet 15s infinite ease-in-out;">🪐</div>
+        <div class="absolute bottom-20 right-10 text-3xl" style="animation: float-planet 12s infinite ease-in-out; animation-delay: 3s;">🌙</div>
+        <div class="absolute top-1/3 left-16 text-2xl animate-spin" style="animation-duration: 20s;">⭐</div>
+        <div class="absolute bottom-1/3 right-1/4 text-3xl animate-pulse" style="animation-delay: 2s;">✨</div>
+        <div class="absolute top-1/2 left-1/3 text-2xl animate-bounce" style="animation-delay: 4s;">🌟</div>
+        
+        <!-- Floating Geometric Shapes -->
+        <div class="shape w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-20"></div>
+        <div class="shape w-16 h-16 bg-gradient-to-r from-pink-400 to-red-500 rounded-lg opacity-20"></div>
+        <div class="shape w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full opacity-20"></div>
+        <div class="shape w-24 h-24 bg-gradient-to-r from-purple-400 to-pink-500 rounded-lg opacity-20"></div>
     </div>
+    
+    <style>
+        @keyframes float-planet {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+        
+        .smoke-particles {
+            position: absolute;
+            bottom: 300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+        }
+        
+        .smoke-particle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: smoke-rise 3s ease-out infinite;
+        }
+        
+        .smoke-particle:nth-child(1) { left: 20px; animation-delay: 0s; }
+        .smoke-particle:nth-child(2) { left: 40px; animation-delay: 0.5s; }
+        .smoke-particle:nth-child(3) { left: 60px; animation-delay: 1s; }
+        .smoke-particle:nth-child(4) { left: 80px; animation-delay: 1.5s; }
+        
+        @keyframes smoke-rise {
+            0% { 
+                transform: translateY(0) scale(0.5); 
+                opacity: 0.8; 
+                background: rgba(255, 255, 255, 0.8);
+            }
+            50% { 
+                transform: translateY(-50px) scale(1); 
+                opacity: 0.4; 
+                background: rgba(200, 200, 200, 0.6);
+            }
+            100% { 
+                transform: translateY(-100px) scale(1.5); 
+                opacity: 0; 
+                background: rgba(150, 150, 150, 0.3);
+            }
+        }
+    </style>
 
     <!-- Header Section -->
     <header class="hero-bg tech-pattern relative min-h-screen flex items-center justify-center">
@@ -491,5 +733,5 @@
             </div>
         </div>
     </footer>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a4268f07536ce7',t:'MTc1NDM3NDQyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a43383f7956ce7',t:'MTc1NDM3NDk1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
